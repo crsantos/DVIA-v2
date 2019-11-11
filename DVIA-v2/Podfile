@@ -1,9 +1,13 @@
+source 'https://cdn.cocoapods.org/'
+
+platform :ios, '10.0'
+
 use_frameworks!
 
 target 'DVIA-v2' do
     pod 'Parse'
     pod 'GoogleAnalytics'
-    pod 'RealmSwift'
+    pod 'RealmSwift', '~> 3.21.0'
     pod 'couchbase-lite-ios'
     pod 'Flurry-iOS-SDK/FlurrySDK'
 end

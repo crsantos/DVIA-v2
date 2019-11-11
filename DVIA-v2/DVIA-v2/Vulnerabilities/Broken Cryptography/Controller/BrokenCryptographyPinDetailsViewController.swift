@@ -52,6 +52,8 @@ extension BrokenCryptographyPinDetailsViewController: UITextFieldDelegate {
     
         let passwordData = password.data(using:String.Encoding.utf8)!
         var derivedKeyData = Data(repeating:0, count:keyByteCount)
+
+        let derivedKeyDataCount = derivedKeyData.count
         
         let derivationStatus = derivedKeyData.withUnsafeMutableBytes {derivedKeyBytes in
             salt.withUnsafeBytes { saltBytes in
@@ -62,7 +64,7 @@ extension BrokenCryptographyPinDetailsViewController: UITextFieldDelegate {
                     saltBytes, salt.count,
                     CCPBKDFAlgorithm(kCCPRFHmacAlgSHA1),
                     UInt32(rounds),
-                    derivedKeyBytes, derivedKeyData.count)
+                    derivedKeyBytes, derivedKeyDataCount)
             }
         }
         if (derivationStatus != 0) {
